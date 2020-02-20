@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" time="1.393">
-  <testsuite name="tests/Main.spec.ts" errors="0" failures="0" skipped="0" timestamp="2020-02-20T06:52:35" time="0.809" tests="1">
-    <testcase classname=" - should return true" name=" - should return true" time="0.003">
-    </testcase>
-  </testsuite>
-</testsuites>
