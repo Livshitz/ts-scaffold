@@ -1,4 +1,26 @@
-export class Main {
+class Program {
+	public static async main() {
+		let error: Error = null;
+
+		try {
+			console.log('----------------');
+			let app = new App();
+			app.run();
+			console.log('DONE');
+		}
+		catch (err) {
+			error = err;
+		} finally {
+			if (error) {
+				console.error('----- \n [!] Failed: ', error);
+				return process.exit(1);
+			}
+			process.exit(0);
+		}
+	}
+}
+
+export class App {
 	constructor() {
 	}
 
@@ -8,6 +30,4 @@ export class Main {
 	}
 }
 
-console.log('----');
-let main = new Main();
-main.run();
+Program.main();
