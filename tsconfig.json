@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"target": "ES2020",
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"removeComments": true,
+		"preserveConstEnums": true,
+		"experimentalDecorators": true,
+		"sourceMap": true,
+		"outDir": "./build/",
+		"noImplicitAny": false,
+		"typeRoots": ["node_modules/@types", "."],
+		"skipLibCheck": true,
+		"types": [ 	
+			"jest",
+			"node"
+		]
+	},
+	"include": [
+		"./**/*.d.ts",
+		"./**/*.ts"
+	],
+	"exclude": [
+		"node_modules/**/*"
+	]
+}
