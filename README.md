@@ -8,6 +8,9 @@ Scaffold project for Typescript projects, with Unit Tests and basic dependencies
 ### Build:
 > ``` $ yarn build ```
 
+### Watch & Build:
+> ``` $ yarn watch ```
+
 ### Run tests:
 > ``` $ yarn test ```
 
