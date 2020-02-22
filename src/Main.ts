@@ -1,3 +1,13 @@
+export default class App {
+	constructor() {
+	}
+
+	public run() {
+		console.log('Hello World!');
+		return true;
+	}
+}
+
 class Program {
 	public static async main() {
 		let error: Error = null;
@@ -17,16 +27,6 @@ class Program {
 			}
 			process.exit(0);
 		}
-	}
-}
-
-export class App {
-	constructor() {
-	}
-
-	public run() {
-		console.log('Hello World!');
-		return true;
 	}
 }
 
