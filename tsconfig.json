@@ -1,26 +1,19 @@
 {
+	"extends": "./tsconfig.base.json",
+
 	"compilerOptions": {
-		"target": "ES2020",
-		"module": "commonjs",
-		"moduleResolution": "node",
-		"removeComments": true,
-		"preserveConstEnums": true,
-		"experimentalDecorators": true,
-		"sourceMap": true,
-		"outDir": "./build/",
-		"noImplicitAny": false,
-		"typeRoots": ["node_modules/@types", "."],
-		"skipLibCheck": true,
-		"types": [ 	
-			"jest",
-			"node"
-		]
+		"rootDirs": [ "./build" ],
+		"baseUrl": "./"
 	},
+
 	"include": [
 		"./src/**/*.d.ts",
 		"./src/**/*.ts"
 	],
 	"exclude": [
-		"node_modules/**/*"
+		"node_modules/**/*",
+		"dist",
+		"build",
+		"tests"
 	]
 }

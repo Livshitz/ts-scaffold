@@ -23,7 +23,6 @@
 			"program": "${file}", //"${workspaceFolder}/main.ts",
 			"console": "internalConsole",
 			"internalConsoleOptions": "openOnFirstSessionStart",
-			// "protocol": "inspector",
 			"showAsyncStacks": true,
 			"preLaunchTask": "tsc: build - tsconfig.json",
             "outFiles": ["${workspaceFolder}/build/**/*.js"],
@@ -37,7 +36,25 @@
 				"${workspaceFolder}/lib/**/*.js",
 				"<node_internals>/**/*.js"
 			]
-			// "port": 9229			
 		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Jest Current File",
+			"program": "${workspaceFolder}/node_modules/.bin/jest",
+			"args": [
+			  "${file}",
+			  "--detectOpenHandles",
+			  "--config",
+			  "jest.config.js"
+			],
+			"smartStep": true,
+			"skipFiles": [
+				"${workspaceFolder}/node_modules/**/*.js",
+				"${workspaceFolder}/lib/**/*.js",
+				"<node_internals>/**/*.js"
+			],
+			"disableOptimisticBPs": true,
+		}
     ]
 }

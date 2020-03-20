@@ -17,5 +17,8 @@ module.exports = {
 	],
 	verbose: true,
 	reporters: [ "default", "jest-junit" ],
-	coverageDirectory: ".tmp/coverage"
+	coverageDirectory: ".tmp/coverage",
+	transformIgnorePatterns: [
+		"<rootDir>/node_modules/(?!libx\.js/.*)"
+	],
 }

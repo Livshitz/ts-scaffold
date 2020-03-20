@@ -11,6 +11,7 @@
     "test:ci": "jest --ci --reporters=default --reporters=jest-junit --coverage --coverageReporters=cobertura --coverageReporters=html"
   },
   "dependencies": {
+    "libx.js": "^0.6.10",
     "typescript": "^3.7.5"
   },
   "devDependencies": {
