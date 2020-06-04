@@ -33,7 +33,7 @@ jobs:
     - run: yarn test
     - run: |
         git config --global push.default simple
-        git config user.email "elya.livshitz@gmail.com"
+        git config user.email "elya@guesty.com"
         git config user.name "Elya Livshitz"
         yarn bump
         # git commit --amend -m "^ pkg bump ($npm_package_version) [skip ci]"
