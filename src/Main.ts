@@ -30,4 +30,4 @@ class Program {
 	}
 }
 
-Program.main();
+// Program.main(); // Uncomment if you want to use this file as node script and self execute

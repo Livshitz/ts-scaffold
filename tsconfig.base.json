@@ -15,7 +15,6 @@
 		"resolveJsonModule": true,
 		"types": [ 	
 			"jest",
-			"libx.js",
 			"node"
 		]
 	},

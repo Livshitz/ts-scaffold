@@ -3,16 +3,24 @@
   "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
+  "author": "",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
     "main": "node build/Main.js",
     "test": "jest",
-    "test:ci": "jest --ci --reporters=default --reporters=jest-junit --coverage --coverageReporters=cobertura --coverageReporters=html"
+    "test:ci": "jest --ci --reporters=default --reporters=jest-junit --coverage --coverageReporters=cobertura --coverageReporters=html",
+    "bump": "yarn version --patch && git push --tags && yarn publish . --tag latest && git push && echo \"Successfully released version $npm_package_version!\""
   },
+  "files": [
+    "build/**",
+    "dist/**",
+    "src/**",
+    "*.js",
+    "*.ts"
+  ],
   "dependencies": {
-    "libx.js": "^0.6.10",
-    "typescript": "^3.7.5"
+    "typescript": "^3.9.3"
   },
   "devDependencies": {
     "@types/jest": "^25.1.2",
