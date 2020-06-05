@@ -4,7 +4,7 @@ Scaffold project for Typescript projects, with Unit Tests and basic dependencies
 ## Develop:
 
 ### Init new scaffold:
-> ``` $ git clone --depth=1 git@github.com:Livshitz/ts-scaffold.git && rm -rf ts-scaffold/.git ```
+> ``` $ git clone --depth=1 git@github.com:Livshitz/ts-scaffold.git ts-scaffold-temp && rm -rf ts-scaffold-temp/.git ```
 
 ### Build:
 > ``` $ yarn build ```
