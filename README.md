@@ -30,3 +30,5 @@ or:
 or:   
 ``` $ node build/Main.js ```
 
+-----
+Scaffolded by [TS-scaffold](https://github.com/Livshitz/ts-scaffold.git)
