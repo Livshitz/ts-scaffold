@@ -55,6 +55,30 @@
 				"<node_internals>/**/*.js"
 			],
 			"disableOptimisticBPs": true,
-		}
+		},
+		{
+            "type": "node",
+            "request": "launch",
+            "name": "Main",
+            // "runtimeVersion": "10.21.0",
+            "program": "${workspaceFolder}/src/Main.ts",
+            "runtimeArgs": [
+				"--harmony",
+				"--no-deprecation"
+			],
+            "console": "internalConsole",
+            "internalConsoleOptions": "openOnSessionStart",
+            "showAsyncStacks": true,
+            "preLaunchTask": "tsc: build - tsconfig.json",
+            "outFiles": [
+                "${workspaceFolder}/build/**/*.js"
+            ],
+            "smartStep": true,
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "${workspaceFolder}/lib/**/*.js",
+                "<node_internals>/**/*.js"
+            ]
+        },
     ]
 }
