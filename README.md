@@ -6,6 +6,10 @@ Scaffold project for Typescript projects, with Unit Tests and basic dependencies
 ### Init new scaffold:
 > ``` $ git clone --depth=1 git@github.com:Livshitz/ts-scaffold.git ts-scaffold-temp && rm -rf ts-scaffold-temp/.git ```
 
+\* If you use this as scaffold for NPM package - make sure to add your NPM token in Github Secrets and change Github Actions config file with your github info:
+[.github/workflows/nodejs.yml](./.github/workflows/nodejs.yml#L36)
+
+
 ### Build:
 > ``` $ yarn build ```
 
