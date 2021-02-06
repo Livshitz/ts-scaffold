@@ -2,18 +2,18 @@
 Scaffold project for Typescript projects, with Unit Tests and basic dependencies set up.
 
 ## Features:
-1. Best practices configuration for most commonly used TS cases
-2. Build & watch yarn/npm commands
-3. Bump script to automatically bump patch version (x.x.x.1, forth location)
-4. Jest setup with ready-to-run configuration for local and CI + coverage reports
-5. Ready-to-use Github Actions config file to seamlessly enable Continuous-Integration to run your Jest tests each commit on any branch and Continuous-Delivery to publish NPM package on each commit on master
-6. Scaffold for Main Program App (inspired by .net's Main program) for quick testing and running through command line (e.g: $ node build/Main.js)
-7. Scaffold for global extensions
-8. Auto pretty with Prettier
-9. VSCode pre-made debugger settings:
+1. Bump script to automatically bump patch version (x.x.x.1, forth location)
+2. Ready-to-use Github Actions config file to seamlessly enable Continuous-Integration to run your Jest tests each commit on any branch and Continuous-Delivery to publish NPM package on each commit on master
+3. Jest setup with ready-to-run configuration for local and CI + coverage reports
+4. Scaffold for Main Program App (inspired by .net's Main program) for quick testing and running through command line (e.g: $ node build/Main.js)
+5. Scaffold for global extensions
+6. Auto pretty with Prettier
+7. VSCode pre-made debugger settings:
 	1. Node attach
  	2. Launch & debug current opened file
  	3. Debug current Jest test file
+8. Opinionated TSConfig targeting ES6 to get you going quickly
+9. Build & watch yarn/npm commands
 
 ## Develop:
 
