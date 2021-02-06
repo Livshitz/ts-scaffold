@@ -4,40 +4,40 @@
 name: Node.js CI
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
 
 jobs:
-  build:
-    # NOTE: To enable Github Actions for CI/CD remove 'false' condition 👇
-    if: "false && !contains(github.event.head_commit.message, 'skip-ci')"
+    build:
+        # NOTE: To enable Github Actions for CI/CD remove 'false' condition 👇
+        if: "false && !contains(github.event.head_commit.message, 'skip-ci')"
 
-    runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [12.x]
+        strategy:
+            matrix:
+                node-version: [12.x]
 
-    steps:
-    - uses: actions/checkout@v2
-    # Setup .npmrc file to publish to npm
-    - uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-        registry-url: 'https://registry.npmjs.org'
-        scope: '@octocat'
-    - run: yarn --frozen-lockfile
-    - run: yarn build
-    - run: yarn test
-    - name: yarn bump
-      if: github.ref == 'refs/heads/master'
-      # NOTE: replace the email bellow: 👇
-      run: | 
-        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-        git config user.name "$GITHUB_ACTOR"
-        yarn bump
-      env:
-        # NOTE: Make sure to set up your NPM secret in Github
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        steps:
+            - uses: actions/checkout@v2
+            # Setup .npmrc file to publish to npm
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  registry-url: 'https://registry.npmjs.org'
+                  scope: '@octocat'
+            - run: yarn --frozen-lockfile
+            - run: yarn build
+            - run: yarn test
+            - name: yarn bump
+              if: github.ref == 'refs/heads/master'
+              # NOTE: replace the email bellow: 👇
+              run: |
+                  git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+                  git config user.name "$GITHUB_ACTOR"
+                  yarn bump
+              env:
+                  # NOTE: Make sure to set up your NPM secret in Github
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
