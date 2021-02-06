@@ -32,6 +32,7 @@ jobs:
     - run: yarn build
     - run: yarn test
     - name: yarn bump
+      if: github.ref == 'refs/heads/master'
       run: | 
         git config user.email "elya.livshitz@gmail.com"
         git config user.name "Elya Livshitz"
