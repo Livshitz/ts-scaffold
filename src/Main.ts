@@ -3,7 +3,6 @@ export default class App {
 
     public run() {
         console.log('Hello World!');
-        return true;
     }
 }
 
@@ -19,13 +18,15 @@ class Program {
         } catch (err) {
             error = err;
         } finally {
+            let errorCode = 0;
             if (error) {
                 console.error('----- \n [!] Failed: ', error);
-                return process.exit(1);
+                errorCode = 1;
             }
-            process.exit(0);
+
+            if (require.main === module) process.exit(errorCode);
         }
     }
 }
 
-Program.main(); // Uncomment if you want to use this file as node script and self execute
+Program.main(); // Comment if you don't want to use this file as node script and self execute
