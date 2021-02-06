@@ -1,52 +1,60 @@
-# ts-scaffold
+# 🏗 ts-scaffold
+
 Scaffold project for Typescript projects, with Unit Tests and basic dependencies set up.
 
 ## Features:
-1. Bump script to automatically bump patch version (x.x.x.1, forth location)
-2. Ready-to-use Github Actions config file to seamlessly enable Continuous-Integration to run your Jest tests each commit on any branch and Continuous-Delivery to publish NPM package on each commit on master
+
+1. ⭐️ Bump script to automatically bump patch version (x.x.x.1, forth location)
+2. ⭐️ Ready-to-use Github Actions config file to seamlessly enable Continuous-Integration to run your Jest tests each commit on any branch and Continuous-Delivery to publish NPM package on each commit on master
 3. Jest setup with ready-to-run configuration for local and CI + coverage reports
 4. Scaffold for Main Program App (inspired by .net's Main program) for quick testing and running through command line (e.g: $ node build/Main.js)
 5. Scaffold for global extensions
-6. Auto pretty with Prettier
-7. VSCode pre-made debugger settings:
-	1. Node attach
- 	2. Launch & debug current opened file
- 	3. Debug current Jest test file
-8. Opinionated TSConfig targeting ES6 to get you going quickly
-9. Build & watch yarn/npm commands
+6. VSCode pre-made debugger settings:
+    1. Node attach
+    2. Launch & debug current opened file
+    3. Debug current Jest test file
+7. Opinionated TSConfig targeting ES6 to get you going quickly
+8. Build & watch yarn/npm commands
+9. Prettier
 
 ## Develop:
 
 ### Init new scaffold:
-> ``` $ git clone --depth=1 git@github.com:Livshitz/ts-scaffold.git ts-scaffold-temp && rm -rf ts-scaffold-temp/.git ```
 
-\* If you use this as scaffold for NPM package - make sure to add your NPM token in Github Secrets and change Github Actions config file with your github info:
-[.github/workflows/nodejs.yml](./.github/workflows/nodejs.yml#L36)
+> `$ git clone --depth=1 git@github.com:Livshitz/ts-scaffold.git ts-scaffold-temp && rm -rf ts-scaffold-temp/.git`
 
+\* If you use this as scaffold for NPM package - make sure to add your NPM token in Github Secrets and change Github Actions config file with your github info: [.github/workflows/nodejs.yml](./.github/workflows/nodejs.yml#L36)
 
 ### Build:
-> ``` $ yarn build ```
+
+> `$ yarn build`
 
 ### Watch & Build:
-> ``` $ yarn watch ```
+
+> `$ yarn watch`
 
 ### Run tests:
-> ``` $ yarn test ```
+
+> `$ yarn test`
 
 ### Debug:
-> ` Select 'typescript' debug configuration, open file in vscode (to run it specifically) and run debugger`  
 
-or:   
-> ` Select 'Node Attach' debug configuration, run specific file in debug mode (you can pass also args):`  
+> ` Select 'typescript' debug configuration, open file in vscode (to run it specifically) and run debugger`
 
-> ``` $ node --inspect build/Main.js ```  
+or:
+
+> ` Select 'Node Attach' debug configuration, run specific file in debug mode (you can pass also args):`
+
+> `$ node --inspect build/Main.js`
 
 ## Use:
 
 ### Run:
-> ``` $ yarn run ```  
-or:   
-``` $ node build/Main.js ```
 
------
+> `$ yarn run`  
+> or:  
+> `$ node build/Main.js`
+
+---
+
 Scaffolded by [TS-scaffold](https://github.com/Livshitz/ts-scaffold.git)
