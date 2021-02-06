@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    # To enable Github Actions for CI/CD remove 'false' condition 
+    # NOTE: To enable Github Actions for CI/CD remove 'false' condition 👇
     if: "false && !contains(github.event.head_commit.message, 'skip-ci')"
 
     runs-on: ubuntu-latest
@@ -27,15 +27,17 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         registry-url: 'https://registry.npmjs.org'
-        scope: '@octocat' # Defaults to the user or organization that owns the workflow file:  
+        scope: '@octocat'
     - run: yarn --frozen-lockfile
     - run: yarn build
     - run: yarn test
     - name: yarn bump
       if: github.ref == 'refs/heads/master'
+      # NOTE: replace the email bellow: 👇
       run: | 
-        git config user.email "elya.livshitz@gmail.com"
-        git config user.name "Elya Livshitz"
+        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+        git config user.name "$GITHUB_ACTOR"
         yarn bump
       env:
+        # NOTE: Make sure to set up your NPM secret in Github
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
