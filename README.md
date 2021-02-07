@@ -57,4 +57,4 @@ or:
 
 ---
 
-Scaffolded by [TS-scaffold](https://github.com/Livshitz/ts-scaffold.git)
+Scaffolded with [🏗 TS-scaffold](https://github.com/Livshitz/ts-scaffold.git)
