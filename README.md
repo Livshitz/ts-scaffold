@@ -25,6 +25,12 @@ Scaffold project for Typescript projects, with Unit Tests and basic dependencies
 
 \* If you use this as scaffold for NPM package - make sure to add your NPM token in Github Secrets and change Github Actions config file with your github info: [.github/workflows/nodejs.yml](./.github/workflows/nodejs.yml#L36)
 
+#### Interact with npm binary:
+Run `yarn link` to make the command set up in `package.json` be available as symlink, and execute: 
+> `$ my-command`  
+
+
+
 ### Build:
 
 > `$ yarn build`
