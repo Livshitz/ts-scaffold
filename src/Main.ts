@@ -24,7 +24,7 @@ class Program {
                 errorCode = 1;
             }
 
-            if (require.main === module) process.exit(errorCode);
+            if (require.main === module) process.kill(process.pid, 'SIGINT') // clean exit;
         }
     }
 }
