@@ -41,7 +41,7 @@ Run `yarn link` to make the command set up in `package.json` be available as sym
 
 ### Run tests:
 
-> `$ yarn test`
+> `$ yarn test <optional: path-to-test-file>`
 
 ### Debug:
 
