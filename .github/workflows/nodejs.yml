@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
     push:
-        branches: [master]
+        branches: [main]
     pull_request:
-        branches: [master]
+        branches: [main]
 
 jobs:
     build:
@@ -32,7 +32,7 @@ jobs:
             - run: yarn build
             - run: yarn test
             - name: yarn bump
-              if: github.ref == 'refs/heads/master'
+              if: github.ref == 'refs/heads/main'
               run: |
                   git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
                   git config user.name "$GITHUB_ACTOR"

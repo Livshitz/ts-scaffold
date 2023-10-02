@@ -5,7 +5,7 @@ Scaffold project for Typescript projects, with Unit Tests and basic dependencies
 ## Features:
 
 1. ⭐️ Bump script to automatically bump patch version (x.x.x.1, forth location)
-2. ⭐️ Ready-to-use Github Actions config file to seamlessly enable Continuous-Integration to run your Jest tests each commit on any branch and Continuous-Delivery to publish NPM package on each commit on master
+2. ⭐️ Ready-to-use Github Actions config file to seamlessly enable Continuous-Integration to run your Jest tests each commit on any branch and Continuous-Delivery to publish NPM package on each commit on main
 3. Jest setup with ready-to-run configuration for local and CI + coverage reports
 4. Scaffold for Main Program App (inspired by .net's Main program) for quick testing and running through command line (e.g: $ node build/Main.js)
 5. Scaffold for global extensions
