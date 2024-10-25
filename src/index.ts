@@ -1,5 +1,5 @@
 export default class App {
-    constructor() {}
+    constructor() { }
 
     public run() {
         console.log('Hello World!');
@@ -29,4 +29,4 @@ class Program {
     }
 }
 
-Program.main(); // Comment if you don't want to use this file as node script and self execute
+// Program.main(); // Comment if you don't want to use this file as node script and self execute

@@ -41,7 +41,7 @@
             "request": "launch",
             "name": "Main",
             // "runtimeVersion": "10.21.0",
-            "program": "${workspaceFolder}/src/Main.ts",
+            "program": "${workspaceFolder}/src/main.ts",
             "runtimeArgs": ["--harmony", "--no-deprecation"],
             "console": "internalConsole",
             "internalConsoleOptions": "openOnSessionStart",

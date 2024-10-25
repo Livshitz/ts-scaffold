@@ -12,26 +12,32 @@ on:
 jobs:
     build:
         # NOTE: To enable Github Actions for CI/CD remove 'false' condition 👇
-        if: "false && !contains(github.event.head_commit.message, 'skip-ci')"
+        if: false && ${{ !contains(github.event.head_commit.message, 'skip-ci') }}
 
         runs-on: ubuntu-latest
 
         strategy:
             matrix:
-                node-version: [16.x]
+                node-version: [20.x]
 
         steps:
-            - uses: actions/checkout@v2
+            - name: Checkout Repository
+              uses: actions/checkout@v3
+              with:
+                repository: ${{ github.event.pull_request.head.repo.full_name }}
+                ref: ${{ github.event.pull_request.head.ref }}
+                
             # Setup .npmrc file to publish to npm
             - uses: actions/setup-node@v1
               with:
                   node-version: ${{ matrix.node-version }}
                   registry-url: 'https://registry.npmjs.org'
                   scope: '@octocat'
-            - run: yarn --frozen-lockfile
-            - run: yarn build
-            - run: yarn test
-            - name: yarn bump
+            - uses: oven-sh/setup-bun@v2
+
+            - run: bun install
+            - run: bun run build
+            - name: bun run bump
               if: github.ref == 'refs/heads/main'
               run: |
                   git config user.email "$GITHUB_ACTOR@users.noreply.github.com"

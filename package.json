@@ -1,21 +1,21 @@
 {
     "name": "ts-scaffold",
-    "version": "0.2.0",
-    "main": "index.js",
+    "version": "0.3.0",
+    "src/main": "index.ts",
     "license": "MIT",
     "author": "",
     "scripts": {
         "format": "prettier --config .prettierrc 'src/**/*.ts' 'tests/**/*.ts' --write",
         "build": "tsc",
         "watch": "tsc -w",
-        "main": "node build/Main.js",
+        "main": "node build/index.js",
         "test": "jest",
         "test:debug": "node --inspect ./node_modules/jest/bin/jest.js --runInBand --colors --verbose",
         "test:ci": "jest --ci --reporters=default --reporters=jest-junit --coverage --coverageReporters=cobertura --coverageReporters=html",
         "bump": "./bump.sh"
     },
     "bin": {
-        "my-command": "bin/cli.sh"
+        "cli": "bin/cli.ts"
     },
     "files": [
         "bin/**",
@@ -35,12 +35,6 @@
         "prettier": "^3.0.3",
         "ts-jest": "^29.1.1",
         "typescript": "^5.2.2"
-    },
-    "jest": {
-        "coverageReporters": [
-            "cobertura",
-            "html"
-        ]
     },
     "jest-junit": {
         "suiteName": "jest tests",
