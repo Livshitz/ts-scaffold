@@ -46,3 +46,6 @@ jobs:
               env:
                   # NOTE: Make sure to set up your NPM secret in Github
                   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+permissions:
+  contents: write
