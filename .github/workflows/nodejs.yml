@@ -7,9 +7,9 @@ on:
 
 jobs:
   publish-npm:
-    # NOTE: To enable Github Actions for CI/CD remove 'false' condition 👇
-    if: false && ${{ !contains(github.event.head_commit.message, 'skip-ci') }}
-
+    # Remove 'false' to enable the workflow
+    if: ${{ false }}
+    if: ${{ !contains(github.event.head_commit.message, '[skip-ci]') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write # Needed to checkout the repository AND push the version commit/tag
