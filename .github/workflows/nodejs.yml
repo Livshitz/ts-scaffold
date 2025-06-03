@@ -1,51 +1,69 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
+name: Publish to npm
 
 on:
-    push:
-        branches: [main]
-    pull_request:
-        branches: [main]
+  push:
+    branches:
+      - main # Trigger on pushes to the main branch
 
 jobs:
-    build:
-        # NOTE: To enable Github Actions for CI/CD remove 'false' condition 👇
-        if: false && ${{ !contains(github.event.head_commit.message, 'skip-ci') }}
+  publish-npm:
+    # NOTE: To enable Github Actions for CI/CD remove 'false' condition 👇
+    if: false && ${{ !contains(github.event.head_commit.message, 'skip-ci') }}
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to checkout the repository AND push the version commit/tag
+      # id-token: write # Uncomment if using OIDC for provenance
 
-        strategy:
-            matrix:
-                node-version: [20.x]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Fetch all history and tags for version bumping
+          fetch-depth: 0
 
-        steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v3
-              with:
-                repository: ${{ github.event.pull_request.head.repo.full_name }}
-                ref: ${{ github.event.pull_request.head.ref }}
-                
-            # Setup .npmrc file to publish to npm
-            - uses: actions/setup-node@v1
-              with:
-                  node-version: ${{ matrix.node-version }}
-                  registry-url: 'https://registry.npmjs.org'
-                  scope: '@octocat'
-            - uses: oven-sh/setup-bun@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
+          # cache: 'bun'
 
-            - run: bun install
-            - run: bun run build
-            - name: bun run bump
-              if: github.ref == 'refs/heads/main'
-              run: |
-                  git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-                  git config user.name "$GITHUB_ACTOR"
-                  yarn bump
-              env:
-                  # NOTE: Make sure to set up your NPM secret in Github
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install dependencies
+        working-directory: ./
+        run: bun install --frozen-lockfile
+
+      - name: Configure Git
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+
+      - name: Build
+        run: bun run build
+
+      - name: Bump version and commit changes
+        run: |
+          # Stage all changes including build artifacts
+          git add .
+          # Create version bump commit with all changes
+          npm version patch --no-git-tag-version
+          git add package.json bun.lock
+          git commit -m "chore(release): v$(node -p "require('./package.json').version") [skip ci]"
+
+      - name: Publish package to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # Uncomment for provenance:
+          # NPM_CONFIG_PROVENANCE: "true"
+
+      - name: Create and push tag
+        run: |
+          git tag "v$(node -p "require('./package.json').version")"
+          git push --follow-tags 
 
 permissions:
   contents: write
