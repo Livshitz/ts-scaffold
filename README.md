@@ -23,7 +23,7 @@ Scaffold project for Typescript projects, with Unit Tests and basic dependencies
 
 > `$ git clone --depth=1 git@github.com:Livshitz/ts-scaffold.git ts-scaffold-temp && rm -rf ts-scaffold-temp/.git`
 
-\* If you use this as scaffold for NPM package - make sure to add your NPM token in Github Secrets and change Github Actions config file with your github info: [.github/workflows/nodejs.yml](./.github/workflows/nodejs.yml#L36)
+\* **Publishing to npm:** [`publish.yml`](./.github/workflows/publish.yml) releases on every push to `main`. It does **not** store an npm token in the repo — it fetches one at publish time from a scoped, read-only secrets broker. Set two repo secrets to enable it: `NPM_TOKEN_URL` (the broker's single-key endpoint) and `NPM_BROKER_SECRET` (its read-only credential). Everything else works out of the box.
 
 #### Interact with npm binary:
 Run `yarn link` to make the command set up in `package.json` be available as symlink, and execute: 

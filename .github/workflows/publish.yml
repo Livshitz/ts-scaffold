@@ -1,0 +1,67 @@
+name: Publish to npm
+
+# Publishes to npm on every push to main.
+# The npm token is NOT stored per-repo — it's fetched at publish time from a scoped,
+# read-only secrets broker (single-key endpoint: returns ONLY this secret). The
+# endpoint URL and its credential live in GitHub secrets (NPM_TOKEN_URL,
+# NPM_BROKER_SECRET), never in this file, so it's safe in a public repo.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write # push the version-bump commit + tag
+
+jobs:
+  publish:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install --frozen-lockfile
+      - run: bun run build
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump patch version
+        run: |
+          npm version patch --no-git-tag-version
+          git add package.json
+          git commit -m "chore(release): v$(node -p "require('./package.json').version") [skip ci]"
+          git tag -a "v$(node -p "require('./package.json').version")" -m "v$(node -p "require('./package.json').version")"
+
+      # Fetch the npm token from a scoped, read-only secrets broker. Endpoint + credential
+      # live in GitHub secrets — never in this file. Token is masked in logs, passed via env.
+      - name: Fetch npm token from secrets broker
+        env:
+          TOKEN_URL: ${{ secrets.NPM_TOKEN_URL }}
+          APP_SECRET: ${{ secrets.NPM_BROKER_SECRET }}
+        run: |
+          token=$(curl -sS -f -H "x-app-secret: $APP_SECRET" "$TOKEN_URL" | jq -r '.value')
+          if [ -z "$token" ] || [ "$token" = "null" ]; then
+            echo "::error::Failed to fetch npm token from secrets broker"; exit 1
+          fi
+          echo "::add-mask::$token"
+          echo "NODE_AUTH_TOKEN=$token" >> "$GITHUB_ENV"
+
+      - name: Publish
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ env.NODE_AUTH_TOKEN }}
+
+      - name: Push commit + tag
+        run: git push --follow-tags
