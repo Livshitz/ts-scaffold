@@ -1,6 +1,11 @@
 # 🏗 ts-scaffold
 
+[![Publish](https://github.com/Livshitz/ts-scaffold/actions/workflows/publish.yml/badge.svg)](https://github.com/Livshitz/ts-scaffold/actions/workflows/publish.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Scaffold project for Typescript projects, with Unit Tests and basic dependencies set up.
+
+> **Fastest start:** click [**Use this template**](https://github.com/Livshitz/ts-scaffold/generate) to create your own repo in one click. Prefer a local copy? Use the git clone instructions below.
 
 ## Features:
 
